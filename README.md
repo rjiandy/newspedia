@@ -4,6 +4,7 @@ Below you'll find information about performing common tasks. The most recent ver
 
 ## Demo Link
 * https://exp.host/@rjiandy/newspedia
+* ![alt text](https://github.com/rjiandy/newspedia/blob/master/assets/ExpoQR.PNG)
 
 ## Table of Contents
 
