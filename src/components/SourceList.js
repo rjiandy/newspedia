@@ -73,7 +73,7 @@ export default class SourceList extends Component {
     let {isLoading, newsSourceList} = this.state;
     if (isLoading) {
       return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={[styles.flex, styles.justifyCenter, styles.alignCenter]}>
           <ActivityIndicator animating size="large" />
         </View>
       );
@@ -82,11 +82,11 @@ export default class SourceList extends Component {
       return <Text>Failed Fetching Data</Text>
     }
     return (
-      <View style={{flex: 1}}>
-        <View style={styles.titleContainer}>
-          <Text style={{fontSize: 20, color: '#42B549', fontWeight: '600'}}>newspedia</Text>
+      <View style>
+        <View style={styles.newspediaTitleContainer}>
+          <Text style={styles.newspediaTitleText}>newspedia</Text>
         </View>
-        <View style={{flex: 1, backgroundColor: '#F8F8F8', padding: 15}}>
+        <View style={[styles.flex, styles.headerContainer]}>
           <Text style={styles.header}>News Sources</Text>
           <FlatList
             data={newsSourceList}
@@ -100,7 +100,16 @@ export default class SourceList extends Component {
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  headerContainer: {
+    backgroundColor: '#F8F8F8',
+    padding: 15,
+  },
+  newspediaTitleText: {
+    fontSize: 20,
+    color: '#42B549',
+    fontWeight: '600',
+  },
+  newspediaTitleContainer: {
     backgroundColor: '#F4F4F4',
     height: 60,
     width: '100%',
@@ -108,6 +117,15 @@ const styles = StyleSheet.create({
     borderColor: '#DBDBDB',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  flex: {
+    flex: 1,
   },
   header: {
     fontSize: 20,

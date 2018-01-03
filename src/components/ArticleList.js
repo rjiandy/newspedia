@@ -21,9 +21,9 @@ import Icon from './Icon';
 function ArticleItem(props: Props) {
   return (
     <TouchableOpacity style={styles.articleContainer} onPress={props.onPress}>
-      <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 16, color: 'rgba(0, 0, 0, 0.7)', fontWeight: '600'}}>{props.title}</Text>
+      <View style={styles.flex}>
+        <View style={styles.flex}>
+          <Text style={styles.articleTitle}>{props.title}</Text>
         </View>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           <Text style={{color: 'rgba(0, 0, 0, 0.4)', fontSize: 12}}>by {props.author}</Text>
@@ -97,7 +97,7 @@ export default class ArticleList extends Component {
   _renderFooter() {
     if (this.state.isFetchMoreLoading) {
       return (
-        <View style={{width: '100%', height: 30, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={[styles.justifyCenter, styles.alignCenter, {width: '100%', height: 30}]}>
           <ActivityIndicator animating size="small" />
         </View>
       );
@@ -118,28 +118,28 @@ export default class ArticleList extends Component {
   render() {
     let {articles, selectedURL} = this.state;
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.flex}>
         <View style={styles.titleBar}>
-          <View style={{flex: 1}}>
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => selectedURL ? this.setState({selectedURL: null}) : this.props.onBack()}>
-              <Icon name="arrow-back" style={{color: '#606060', fontSize: 16, marginRight: 4}} />
+          <View style={styles.flex}>
+            <TouchableOpacity style={[styles.flexRow, styles.alignCenter]} onPress={() => selectedURL ? this.setState({selectedURL: null}) : this.props.onBack()}>
+              <Icon name="arrow-back" style={styles.backIcon} />
               <Text style={{color: 'rgba(0, 0, 0, 0.4)', fontSize: 12}}>
                 {!selectedURL ? 'News Sources' : 'Articles'}
               </Text>
             </TouchableOpacity>
           </View>
-          <Text style={{fontSize: 20, color: '#42B549', fontWeight: '600'}}>newspedia</Text>
+          <Text style={styles.newspediaText}>newspedia</Text>
         </View>
-        <View style={{flex: 1, backgroundColor: '#F8F8F8', padding: 15}}>
-          <View style={{flexDirection: 'row', marginBottom: 10}}>
+        <View style={[styles.flex, {backgroundColor: '#F8F8F8', padding: 15}]}>
+          <View style={[styles.flexRow, {marginBottom: 10}]}>
             <Text style={styles.header}>News</Text>
-            <View style={{width: 2, height: 22, backgroundColor: '#42B549', marginHorizontal: 10}} />
+            <View style={styles.barSeparator} />
             <Text style={styles.header}>{this.props.source.name}</Text>
           </View>
           {selectedURL == null ? (
             <View style={styles.searchContainer}>
               <TextInput
-                style={{flex: 1}}
+                style={styles.flex}
                 underlineColorAndroid="white"
                 maxGrow={30}
                 onChangeText={(searchText) => this.setState({searchText})}
@@ -147,7 +147,7 @@ export default class ArticleList extends Component {
                 placeholder="Search news"
                 onSubmitEditing={this._submitSearch}
               />
-              <TouchableOpacity onPress={this._submitSearch} style={{alignSelf: 'center'}}>
+              <TouchableOpacity onPress={this._submitSearch} style={styles.alignCenter}>
                 <Icon
                   name="search"
                   style={{fontSize: 16}}
@@ -155,7 +155,7 @@ export default class ArticleList extends Component {
               </TouchableOpacity>
             </View>
           ) : null}
-          <View style={{flex: 1}}>
+          <View style={styles.flex}>
             {selectedURL == null ? (
               <FlatList
                 data={this.state.articles}
@@ -185,6 +185,38 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 10,
     alignSelf: 'center',
+  },
+  barSeparator: {
+    width: 2, height: 22,
+    backgroundColor: '#42B549',
+    marginHorizontal: 10,
+  },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  newspediaText: {
+    fontSize: 20,
+    color: '#42B549',
+    fontWeight: '600',
+  },
+  flex: {
+    flex: 1,
+  },
+  flexRow: {
+    flexDirection: 'row',
+  },
+  backIcon: {
+    color: '#606060',
+    fontSize: 16,
+    marginRight: 4,
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  articleTitle: {
+    fontSize: 16,
+    color: 'rgba(0, 0, 0, 0.7)',
+    fontWeight: '600',
   },
   titleBar: {
     height: 60,
