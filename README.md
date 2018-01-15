@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
+## Notes:
+* This project didn't use any navigator or redux yet
+* Possibilities of adding redux and redux-saga in the future
+
 ## Demo Link
 * https://exp.host/@rjiandy/newspedia
 * ![alt text](https://github.com/rjiandy/newspedia/blob/master/assets/ExpoQR.PNG)
